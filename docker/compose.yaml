@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  mern-tutorial-client:
+    bluid:
+  mern-tutorial-api:
+  mern-tutorial-mongodb:
