@@ -1,6 +1,6 @@
 version: '3.8'
 services:
   mern-tutorial-client:
-    bluid:
+    bluid: mongodb.dockerfile
   mern-tutorial-api:
   mern-tutorial-mongodb:
