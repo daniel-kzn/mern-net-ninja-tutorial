@@ -20,6 +20,7 @@ const WorkoutSchema = new Schema(
   { timestamps: true }
 );
 
+// Workout = collection
 const WorkoutModel = mongoose.model("Workout", WorkoutSchema);
 
 export default WorkoutModel;

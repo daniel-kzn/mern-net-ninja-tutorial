@@ -1,6 +1,12 @@
 version: '3.8'
 services:
-  mern-tutorial-client:
-    bluid: mongodb.dockerfile
-  mern-tutorial-api:
   mern-tutorial-mongodb:
+    container_name: mongodb-mern-tutorial
+    build: 
+      dockerfile: mongodb.dockerfile
+    volumes:
+      - "/var/container/mern-net-ninja-tutorial:/var/db"
+    ports:
+      - 27017:27017
+  #mern-tutorial-api:
+  #mern-tutorial-client:

@@ -1,12 +1,24 @@
 import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import chalk from "chalk";
 import * as dotenv from "dotenv";
+
 import WorkoutRouter from "./routes/WorkoutRouter";
 import mongoose from "mongoose";
 
 const app = express();
 dotenv.config();
-
-app.use(express.json());
+//morgan("\x1b[33m:method :url :status :res[content-length] - :response-time ms")
+// chalk.blue(":method")
+app
+  .use(express.json())
+  .use(cors())
+  .use(
+    morgan(
+      "\x1b[33m:method \x1b[36m:url \x1b[32m:status - \x1b[35m:response-time ms"
+    )
+  );
 
 // Importation des routers
 app.use("/api/workout", WorkoutRouter);

@@ -9,28 +9,15 @@ import {
 } from "../controllers/WorkoutController";
 
 const WorkoutRouter = express.Router();
-
-WorkoutRouter.get("/", (req: Request, res: Response) => {
-  res.json({ msg: "GET all workouts" });
-});
-
-WorkoutRouter.get("/:id", (req: Request, res: Response) => {
-  res.json({ msg: `GET one workout with id:` });
-});
-
+// Send specefic workout
+WorkoutRouter.get("/:id", getWorkout);
+// Send all workouts
+WorkoutRouter.get("/", getWorkouts);
 // Create workout
-WorkoutRouter.post("/", (req: Request, res: Response) => {
-  // extract
-  const { title, load, reps } = req.body;
-  try {
-    const workout = Workout.create({ title, load, reps });
-    res.status(200).json({
-      msg: `Succes create workout`,
-      workout: `${workout}`,
-    });
-  } catch (err) {
-    res.status(400).json({ error: `${err}` });
-  }
-});
+WorkoutRouter.post("/", createWorkout);
+// Update workout
+WorkoutRouter.patch("/:id", updateWorkout);
+// Delete workout
+WorkoutRouter.post("/:id", deleteWorkout);
 
 export default WorkoutRouter;
