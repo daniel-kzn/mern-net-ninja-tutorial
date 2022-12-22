@@ -1,6 +1,9 @@
 import { FC, useState } from "react";
+import { useWorkoutsContext } from "../hooks/Workouts/useWorkoutsContext";
 
 const WorkoutForm: FC = () => {
+  const { dispatch } = useWorkoutsContext();
+
   const [title, setTitle] = useState("");
   const [reps, setReps] = useState("");
   const [load, setLoad] = useState("");
@@ -15,7 +18,7 @@ const WorkoutForm: FC = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((json) => console.log(json));
+    }).then((json) => dispatch({ type: "CREATE_UPDATE", payload: json }));
     setTitle("");
     setReps("");
     setLoad("");
@@ -25,15 +28,18 @@ const WorkoutForm: FC = () => {
     <div className="container bg-[#212121]">
       <form onSubmit={handleSubmit} className=" text-white">
         <h3>Ajout d'un nouveau workout</h3>
-        <label>Titre :</label>
-        <input
-          className="text-black"
-          type="text"
-          onChange={(event) => {
-            setTitle(event.target.value);
-          }}
-          value={title}
-        />
+        <div className="rounded border-black border-2 w-max">
+          <label>Titre : </label>
+          <input
+            className="text-white bg-[#212121] "
+            type="text"
+            onChange={(event) => {
+              setTitle(event.target.value);
+            }}
+            value={title}
+          />
+        </div>
+
         <label>Répétition :</label>
         <input
           className="text-black"

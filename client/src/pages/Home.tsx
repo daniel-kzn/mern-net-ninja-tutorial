@@ -1,15 +1,16 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { Workout } from "../models/Workout";
+import { useWorkoutsContext } from "../hooks/Workouts/useWorkoutsContext";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
 
 const Home: FC = () => {
-  const [workouts, setWorkouts] = useState<Workout[]>([]);
+  const { workouts, dispatch } = useWorkoutsContext();
 
   useEffect(() => {
     fetch("http://localhost:3000/api/workout/")
       .then((resp) => resp.json())
-      .then((json) => setWorkouts(json.data));
+      .then((json) => dispatch({ type: "SET_WORKOUTS", payload: json.data }));
   }, []);
 
   return (
