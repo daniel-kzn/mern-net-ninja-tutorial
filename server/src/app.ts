@@ -5,6 +5,7 @@ import chalk from "chalk";
 import * as dotenv from "dotenv";
 
 import WorkoutRouter from "./routes/WorkoutRouter";
+import UserRouter from "./routes/UserRouter";
 import mongoose from "mongoose";
 
 const app = express();
@@ -21,7 +22,7 @@ app
   );
 
 // Importation des routers
-app.use("/api/workout", WorkoutRouter);
+app.use("/api/workout", WorkoutRouter).use("/api/user", UserRouter);
 
 // Connect to mongo
 mongoose

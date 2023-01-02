@@ -1,11 +1,10 @@
-import { FC, useEffect } from "react";
-import { Workout } from "../models/Workout";
-import { useWorkoutsContext } from "../hooks/Workouts/useWorkoutsContext";
+import { FC, useEffect, useContext, useReducer } from "react";
 import WorkoutDetails from "../components/WorkoutDetails";
 import WorkoutForm from "../components/WorkoutForm";
+import { WorkoutsContext } from "../context/WorkoutsContext";
 
 const Home: FC = () => {
-  const { workouts, dispatch } = useWorkoutsContext();
+  const { state, dispatch } = useContext(WorkoutsContext);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/workout/")
@@ -14,13 +13,15 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <div className="p-6 bg-[#121212]">
+    <div className="p-6  m-6 shadow-md">
       <div className="container">
         <WorkoutForm />
-        <div className="flex space-x-10">
-          {workouts.map((workout) => {
+        <div className="grid grid-cols-4 gap-2 w-auto py-5">
+          {state.workouts.map((workout) => {
             return (
               <WorkoutDetails
+                key={workout._id}
+                _id={workout._id}
                 title={workout.title}
                 reps={workout.reps}
                 load={workout.load}

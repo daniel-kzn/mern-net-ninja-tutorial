@@ -18,6 +18,6 @@ WorkoutRouter.post("/", createWorkout);
 // Update workout
 WorkoutRouter.patch("/:id", updateWorkout);
 // Delete workout
-WorkoutRouter.post("/:id", deleteWorkout);
+WorkoutRouter.delete("/:id", deleteWorkout);
 
 export default WorkoutRouter;

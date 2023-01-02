@@ -1,15 +1,22 @@
-import { Children, FC } from "react";
+import { Children, FC, useReducer } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
-import { WorkoutsContext } from "./context/WorkoutsContext";
+import { WorkoutsProvider } from "./provider/WorkoutsProvider";
 
 const App: FC = () => {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <WorkoutsProvider>
+              <Home />
+            </WorkoutsProvider>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
