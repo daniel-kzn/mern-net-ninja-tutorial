@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
-import chalk from "chalk";
 import * as dotenv from "dotenv";
 
 import WorkoutRouter from "./routes/WorkoutRouter";
