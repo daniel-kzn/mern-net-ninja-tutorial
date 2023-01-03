@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { FC, createContext, useReducer } from "react";
 import { Workout } from "../models/Workout";
 
 export type WorkoutAction =
@@ -67,3 +67,13 @@ export const WorkoutsContext = createContext<WorkoutsContext>({
   },
   dispatch: () => {},
 });
+
+export const WorkoutsProvider: FC = ({ children }) => {
+  const [state, dispatch] = useReducer(workoutsReducer, initialWorkoutsState);
+
+  return (
+    <WorkoutsContext.Provider value={{ state, dispatch }}>
+      {children}
+    </WorkoutsContext.Provider>
+  );
+};

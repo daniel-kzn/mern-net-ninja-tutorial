@@ -1,35 +1,15 @@
 import { FC, useEffect, useContext, useReducer } from "react";
-import WorkoutDetails from "../components/WorkoutDetails";
-import WorkoutForm from "../components/WorkoutForm";
-import { WorkoutsContext } from "../context/WorkoutsContext";
+import { Link } from "react-router-dom";
 
 const Home: FC = () => {
-  const { state, dispatch } = useContext(WorkoutsContext);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/api/workout/")
-      .then((resp) => resp.json())
-      .then((json) => dispatch({ type: "SET_WORKOUTS", payload: json.data }));
-  }, []);
-
   return (
-    <div className="p-6  m-6 shadow-md">
-      <div className="container">
-        <WorkoutForm />
-        <div className="grid grid-cols-4 gap-2 w-auto py-5">
-          {state.workouts.map((workout) => {
-            return (
-              <WorkoutDetails
-                key={workout._id}
-                _id={workout._id}
-                title={workout.title}
-                reps={workout.reps}
-                load={workout.load}
-              />
-            );
-          })}
-        </div>
-      </div>
+    <div className="flex min-h-screen justify-center items-center space-x-4">
+      <Link to="/login">
+        <button className="bg-[#90dbf4] p-4 rounded-lg">Log in</button>
+      </Link>
+      <Link to="/signup">
+        <button className="bg-[#90dbf4] p-4 rounded-lg">Sign up</button>
+      </Link>
     </div>
   );
 };
